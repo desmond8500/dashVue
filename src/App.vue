@@ -1,23 +1,22 @@
 <template>
   <div id="app">
     <div id="nav" class="dash_nav">
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
 
       <div class="dash_nav_logo">
             <img src="./assets/dash/theme/icon/cell.png" height="40px" alt="">
         </div>
         <div class="dash_nav_menus">
-                <div class="dash_nav_menu">Images</div>
-                <div class="dash_nav_menu">Gifs</div>
-                <div class="dash_nav_menu">Videos</div>
+                <router-link v-for="menu in menus" :key="menu.id" :to="menu.link" class="dash_nav_menu">{{ menu.name }}</router-link>
+                
         </div>
         <div class="dash_nav_profile">
             <img src="./assets/dash/theme/icon/user.png" height="40px" alt="">
             Profile
         </div>
     </div>
-    <router-view/>
+    <div class="dash_wrapper">
+        <router-view/>
+    </div>
   </div>
 </template>
 
@@ -26,7 +25,15 @@
 
 <script>
 export default {
-
+    data(){
+        return{
+            menus:[
+                { id: 1, name: 'Projets', link: '/projets'},
+                { id: 2, name: 'Stock', link: '/stock'},
+                { id: 2, name: 'Medias', link: '/medias'},
+            ]
+        }
+    }
 }
 </script>
 
@@ -82,6 +89,18 @@ body{
 }
 .dash_nav_profile img{
     margin-right: 10px;
+}
+
+.dash_wrapper{
+    margin: 10px 20px;
+}
+
+.dash_page_title{
+    font-size: 25px;
+    padding: 10px 0;
+}
+.dash_breadcrumbs{
+    text-align: right;
 }
 
 </style>
